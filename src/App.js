@@ -1,71 +1,46 @@
-
 import './index.css';
-import Employee from './components/Employee';
-import { useState } from 'react';
+import './components/styles.css';
+import Algorithms from "./components/Algorithms"
+import { Route, Routes } from 'react-router-dom';
+import BinarySearch from "./components/BinarySearch"
+import Page from './Page';
+import { Unfinished } from './unfinished';
+import DataStructures from './components/DataStructs';
+import ProblemSolving from './components/ProblemSolving';
+import { useEffect, useState } from 'react';
+import LoadingPage from './components/LoadingPage';
+import LoginForm from './components/loginForm';
+
 
 function App() {
-  const [role, setRole] = useState('dev');
-  const [employees, setEmployees] = useState([
-    {
-      name: "Caleb",
-      role: "Developer",
-      img: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=600'
-    },
-    {
-      name: "Sal",
-      role: "Manager",
-      img: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=600'
-    },
-    {
-      name: "John",
-      role: "Director of Eng.",
-      img: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=600'
-    },
-    {
-      name: "Melanie",
-      role: "Software Engineer",
-      img: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=600'
-    },
-    {
-      name: "Corey",
-      role: "The Devops Guy",
-      img: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=600'
-    },
-    {
-      name: "Jake",
-      role: "Senior",
-      img: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=600'
-    }
-  ]);
 
-  const showEmployees = true;
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
+  }, []);
+
   return (
-    <div className="App">
-      {showEmployees ? (
-        <>
-          <input type='text' onChange={(e) => {
-            console.log(e.target.value);
-            setRole(e.target.value);
-          }}
-          />
-          <div className="flex flex-wrap justify-center">
-            {employees.map((employee) => {
-
-              return (<Employee
-                name={employee.name}
-                role={employee.role}
-                img={employee.img} />);
-            })}
-          </div>
-
-        </>
-      )
-        : (
-          <p>You can not see the employees</p>)
-      }
-
-    </div>
+    isLoading ? <LoadingPage /> :
+      <div className="App">
+        {isLoggedIn === false ? <LoginForm clicker={setIsLoggedIn} /> :
+          <Routes>
+            <Route path='/' element={<Page />}></Route>
+            <Route path='/algorithms' element={<Algorithms />}></Route>
+            <Route path='/algorithms/binarysearch' element={<BinarySearch />} ></Route>
+            <Route path='/algorithms/unfinished' element={<Unfinished />}></Route>
+            <Route path='/datastructures' element={<DataStructures />}></Route>
+            <Route path='/datastructures/unfinished' element={<Unfinished />}></Route>
+            <Route path='/problem-solving-techniques' element={<ProblemSolving />}></Route>
+            <Route path='/problem-solving-techniques/unfinished' element={<Unfinished />}></Route>
+          </Routes>
+        }
+      </div>
   );
+
 }
 
 export default App;

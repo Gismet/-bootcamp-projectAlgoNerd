@@ -1,0 +1,51 @@
+.info-wrapper {
+    background-color: #282828;
+}
+
+.info-content {
+    width: 97%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.info-header {
+    width: 95%;
+    margin: 0.5rem auto;
+    font-size: 1.6rem;
+    padding: 1rem;
+    color: #f2f2f2;
+    font-family: sans-serif;
+}
+
+.info-main {
+    width: 95%;
+    margin: 0.5rem auto;
+
+    font-size: 1.4rem;
+    color: wheat;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 1rem;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 660px) {
+    .info-header {
+        font-size: 1.2rem;
+    }
+
+    .info-main {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .info-header {
+        font-size: 1rem;
+    }
+
+    .info-main {
+        font-size: 0.9rem;
+    }
+
+}

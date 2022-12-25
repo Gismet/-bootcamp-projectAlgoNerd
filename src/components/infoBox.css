@@ -1,0 +1,10 @@
+.info-box {
+    width: 90%;
+    height: auto;
+    word-wrap: break-word;
+    color: #232323;
+    background-color: #FAF9F6;
+    padding: 1rem;
+    margin: 0 auto 1rem;
+    border-radius: 0.5rem;
+}
